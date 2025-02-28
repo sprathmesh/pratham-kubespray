@@ -96,6 +96,8 @@ ls -l /home/ubuntu/kubespray/inventory/k8s-cluster/inventory.ini
   ```bash
   ssh-copy-id root@masterX
   ```
+## Taint & Untaint Nodes
+
 - If playbook execution fails, check Ansible logs and rerun the playbook.
 - after playbook run succusefuly then check kubectl get node
 - If you want to use master node also to deploy cluster then untaint the master nodes
