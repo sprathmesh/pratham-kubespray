@@ -97,6 +97,29 @@ ls -l /home/ubuntu/kubespray/inventory/k8s-cluster/inventory.ini
   ssh-copy-id root@masterX
   ```
 - If playbook execution fails, check Ansible logs and rerun the playbook.
+- after playbook run succusefuly then check kubectl get node
+- If you want to use master node also to deploy cluster then untaint the master nodes
+```bash
+kubectl describe node master1 | grep Taint
+kubectl describe node master2 | grep Taint
+kubectl describe node master3 | grep Taint
+kubectl describe node worker1 | grep Taint
+```
+- After check the taint status
+- If you want to untaint Nodes
+```bash
+kubectl taint nodes master1 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes master2 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes master3 node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl taint nodes worker1 node-role.kubernetes.io/control-plane:NoSchedule-
+```
+- Your Taints are untaint properly to check run again - *IF YOU WANT
+```bash
+kubectl describe node master1 | grep Taint
+kubectl describe node master2 | grep Taint
+kubectl describe node master3 | grep Taint
+kubectl describe node worker1 | grep Taint
+````
 
 ## References
 - [Kubespray GitHub Repo](https://github.com/kubernetes-sigs/kubespray)
